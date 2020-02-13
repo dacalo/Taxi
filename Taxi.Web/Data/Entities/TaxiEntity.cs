@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Taxi.Web.Data.Entities
 {
@@ -11,5 +12,7 @@ namespace Taxi.Web.Data.Entities
         [StringLength(6, MinimumLength = 6, ErrorMessage = "El campo {0} debe tener {1} caracteres.")]
         [Required(ErrorMessage = "El campo {0} es obligatoriio")]
         public string Plaque { get; set; }
+
+        public ICollection<TripEntity>  Trips { get; set; }
     }
 }

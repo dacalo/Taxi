@@ -98,7 +98,8 @@ namespace Taxi.Web.Controllers
                 return NotFound();
             }
 
-            var taxiEntity = await _context.Taxis.FindAsync(id);
+            var taxiEntity = await _context.Taxis.FindAsync(i
+                d);
             if (taxiEntity == null)
             {
                 return NotFound();
