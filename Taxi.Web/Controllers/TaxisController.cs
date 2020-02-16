@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Taxi.Web.Data;
@@ -7,6 +9,8 @@ using Taxi.Web.Data.Entities;
 
 namespace Taxi.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class TaxisController : Controller
     {
         private readonly DataContext _context;
@@ -18,7 +22,7 @@ namespace Taxi.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Taxis.ToListAsync());
+            return View(await _context.Taxis.OrderBy(t => t.Plaque).ToListAsync());
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -28,13 +32,13 @@ namespace Taxi.Web.Controllers
                 return NotFound();
             }
 
-            var taxiEntity = await _context.Taxis.FindAsync(id);
-            if (taxiEntity == null)
+            var model = await _context.Taxis.FirstOrDefaultAsync(m => m.Id == id);
+            if (model == null)
             {
                 return NotFound();
             }
 
-            return View(taxiEntity);
+            return View(model);
         }
 
         public IActionResult Create()
@@ -50,8 +54,23 @@ namespace Taxi.Web.Controllers
             {
                 model.Plaque = model.Plaque.ToUpper();
                 _context.Add(model);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Ya existe un registro con la misma placa.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, ex.InnerException.Message);
+                    }
+                };
             }
             return View(model);
         }
@@ -63,12 +82,12 @@ namespace Taxi.Web.Controllers
                 return NotFound();
             }
 
-            var taxiEntity = await _context.Taxis.FindAsync(id);
-            if (taxiEntity == null)
+            var model = await _context.Taxis.FindAsync(id);
+            if (model == null)
             {
                 return NotFound();
             }
-            return View(taxiEntity);
+            return View(model);
         }
 
         
@@ -85,8 +104,22 @@ namespace Taxi.Web.Controllers
             {
                 model.Plaque = model.Plaque.ToUpper();
                 _context.Update(model);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "Ya existe un registro con la misma placa.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, ex.InnerException.Message);
+                    }
+                }
             }
             return View(model);
         }
@@ -98,13 +131,13 @@ namespace Taxi.Web.Controllers
                 return NotFound();
             }
 
-            var taxiEntity = await _context.Taxis.FindAsync(id);
-            if (taxiEntity == null)
+            var model = await _context.Taxis.FindAsync(id);
+            if (model == null)
             {
                 return NotFound();
             }
 
-            _context.Taxis.Remove(taxiEntity);
+            _context.Taxis.Remove(model);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

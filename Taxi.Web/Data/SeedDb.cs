@@ -2,32 +2,85 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Taxi.Common.Enums;
 using Taxi.Web.Data.Entities;
+using Taxi.Web.Helpers;
 
 namespace Taxi.Web.Data
 {
     public class SeedDb
     {
-        private readonly DataContext _context;
+        private readonly DataContext _dataContext;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(
+            DataContext dataContext,
+            IUserHelper userHelper)
         {
-            _context = context;
+            _dataContext = dataContext;
+            _userHelper = userHelper;
         }
 
         public async Task SeedAsync()
         {
-            await _context.Database.EnsureCreatedAsync();
-            await CheckTaxisAsync();
+            await _dataContext.Database.EnsureCreatedAsync();
+            await CheckRolesAsync();
+            var admin = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "divadchl@gmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.Admin);
+            var driver = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "divadchl@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.Driver);
+            var user1 = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "dacalo.soporte@gmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            var user2 = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "divadchl666@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            await CheckTaxisAsync(driver, user1, user2);
         }
 
-        private async Task CheckTaxisAsync()
+        private async Task<UserEntity> CheckUserAsync(
+            string rfc,
+            string firstName,
+            string lastName,
+            string email,
+            string phone,
+            string address,
+            UserType userType)
         {
-            if (!_context.Taxis.Any())
+            var user = await _userHelper.GetUserByEmailAsync(email);
+            if (user == null)
             {
-                _context.Taxis.Add(new TaxiEntity
+                user = new UserEntity
                 {
-                    Plaque = "DCL123",
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    RFC = rfc,
+                    UserType = userType
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+            }
+
+            return user;
+        }
+
+        private async Task CheckRolesAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.Driver.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
+        }
+
+        private async Task CheckTaxisAsync(
+            UserEntity driver,
+            UserEntity user1,
+            UserEntity user2)
+        {
+            if (!_dataContext.Taxis.Any())
+            {
+                _dataContext.Taxis.Add(new TaxiEntity
+                {
+                    User = driver,
+                    Plaque = "TPQ123",
                     Trips = new List<TripEntity>
                     {
                         new TripEntity
@@ -35,47 +88,54 @@ namespace Taxi.Web.Data
                             StartDate = DateTime.UtcNow,
                             EndDate = DateTime.UtcNow.AddMinutes(30),
                             Qualification = 4.5f,
-                            Source = "FCA UNAM",
-                            Target = "FES Cuautitlán",
-                            Remarks = "Muy buen servicio"
+                            Source = "ITM Fraternidad",
+                            Target = "ITM Robledo",
+                            Remarks = "Muy buen servicio",
+                            User = user1
                         },
                         new TripEntity
                         {
                             StartDate = DateTime.UtcNow,
                             EndDate = DateTime.UtcNow.AddMinutes(30),
                             Qualification = 4.8f,
-                            Source = "CU",
-                            Target = "Prepa 4",
-                            Remarks = "Conductor muy amable"
+                            Source = "ITM Robledo",
+                            Target = "ITM Fraternidad",
+                            Remarks = "Conductor muy amable",
+                            User = user1
                         }
                     }
                 });
-                _context.Taxis.Add(new TaxiEntity
+
+                _dataContext.Taxis.Add(new TaxiEntity
                 {
-                    Plaque = "LCD321",
-                    Trips = new List<TripEntity> 
-                    { 
+                    Plaque = "THW321",
+                    User = driver,
+                    Trips = new List<TripEntity>
+                    {
                         new TripEntity
                         {
                             StartDate = DateTime.UtcNow,
                             EndDate = DateTime.UtcNow.AddMinutes(30),
                             Qualification = 4.5f,
-                            Source = "Dr Velasco",
-                            Target = "Dr Martínez del Río",
-                            Remarks = "Muy buen servicio"
+                            Source = "ITM Fraternidad",
+                            Target = "ITM Robledo",
+                            Remarks = "Muy buen servicio",
+                            User = user2
                         },
                         new TripEntity
                         {
                             StartDate = DateTime.UtcNow,
                             EndDate = DateTime.UtcNow.AddMinutes(30),
-                            Qualification = 4.8F,
-                            Source = "Dinamarca",
-                            Target = "Chihuahua",
-                            Remarks = "Excelente platica"
+                            Qualification = 4.8f,
+                            Source = "ITM Robledo",
+                            Target = "ITM Fraternidad",
+                            Remarks = "Conductor muy amable",
+                            User = user2
                         }
                     }
                 });
-                await _context.SaveChangesAsync();
+
+                await _dataContext.SaveChangesAsync();
             }
         }
     }

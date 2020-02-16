@@ -13,6 +13,7 @@ namespace Taxi.Web.Data.Entities
         [Required(ErrorMessage = "El campo {0} es obligatoriio")]
         public string Plaque { get; set; }
 
-        public ICollection<TripEntity>  Trips { get; set; }
+        public ICollection<TripEntity> Trips { get; set; }
+        public UserEntity User { get; set; }
     }
 }
