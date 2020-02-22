@@ -8,11 +8,11 @@ using Taxi.Prism.Helpers;
 
 namespace Taxi.Prism.ViewModels
 {
-    public class TaxiHistoryPageViewModel : ViewModelBase
+    public class ModifyUserPageViewModel : ViewModelBase
     {
-        public TaxiHistoryPageViewModel(INavigationService navigationService): base(navigationService)
+        public ModifyUserPageViewModel(INavigationService navigationService): base( navigationService)
         {
-            Title = Languages.TaxiHistory;
+            Title = Languages.ModifyUser;
         }
     }
 }

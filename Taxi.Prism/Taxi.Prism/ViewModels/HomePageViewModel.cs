@@ -4,6 +4,7 @@ using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Taxi.Prism.Helpers;
 
 namespace Taxi.Prism.ViewModels
 {
@@ -11,7 +12,7 @@ namespace Taxi.Prism.ViewModels
     {
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Taxi Qualifier";
+            Title = Languages.TaxiQualified;
         }
     }
 }
