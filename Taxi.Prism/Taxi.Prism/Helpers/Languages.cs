@@ -32,5 +32,16 @@ namespace Taxi.Prism.Helpers
         public static string SeeTaxiHistory => Resource.SeeTaxiHistory;
         public static string Menu => Resource.Menu;
         public static string TaxiQualified => Resource.TaxiQualified;
+        public static string Plaque => Resource.Plaque;
+        public static string PlaquePlaceHolder => Resource.PlaquePlaceHolder;
+        public static string CheckPlaque => Resource.CheckPlaque;
+        public static string Qualification => Resource.Qualification;
+        public static string NumberOfTrips => Resource.NumberOfTrips;
+        public static string Driver => Resource.Driver;
+        public static string StartDate => Resource.StartDate;
+        public static string Score => Resource.Score;
+        public static string Remarks => Resource.Remarks;
+        public static string Loading => Resource.Loading;
+
     }
 }
