@@ -162,4 +162,34 @@
   <data name="TaxiQualified" xml:space="preserve">
     <value>Taxi calificado</value>
   </data>
+  <data name="Plaque" xml:space="preserve">
+    <value>Placa</value>
+  </data>
+  <data name="PlaquePlaceHolder" xml:space="preserve">
+    <value>Ingrese la placa...</value>
+  </data>
+  <data name="CheckPlaque" xml:space="preserve">
+    <value>Comprobar placa</value>
+  </data>
+  <data name="Qualification" xml:space="preserve">
+    <value>Calificación</value>
+  </data>
+  <data name="NumberOfTrips" xml:space="preserve">
+    <value>Número de viajes</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>Conductor</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Fecha inicial</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
 </root>
