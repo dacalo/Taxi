@@ -6,6 +6,7 @@
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="Taxi.Prism.Views.TaxiHistoryPage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
     <AbsoluteLayout>
@@ -20,19 +21,19 @@
                        Placeholder="Enter plaque..." 
                        Text="{Binding Plaque}"
                        VerticalOptions="Center"/>
-                <Button BackgroundColor="Navy"
-                        Command="{Binding CheckPlaqueCommand}"
-                        CornerRadius="20"
-                        HeightRequest="40"
+                <Button Command="{Binding CheckPlaqueCommand}"
                         Margin="10,0"
-                        Text="Check Plaque"
-                        TextColor="White"/>
+                        Text="Check Plaque"/>
             </StackLayout>
             <rating:SfRating HorizontalOptions="Center" 
                              IsEnabled="False"
                              Margin="0,5"
                              Precision="Exact"
-                             Value="{Binding Taxi.Qualification}" />
+                             Value="{Binding Taxi.Qualification}">
+                <rating:SfRating.RatingSettings>
+                    <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
+                </rating:SfRating.RatingSettings>
+            </rating:SfRating>
             <Label FontAttributes="Bold" 
                    FontSize="Large"
                    HorizontalOptions="Center"
@@ -99,9 +100,9 @@
         <busyindicator:SfBusyIndicator AnimationType="Gear" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                                        AbsoluteLayout.LayoutFlags="All"
-                                       BackgroundColor="Silver"
+                                       BackgroundColor="{StaticResource ColorDanger}"
                                        HorizontalOptions="Center"
-                                       TextColor="White"
+                                       TextColor="{StaticResource ColorFontInverse}"
                                        IsVisible="{Binding IsRunning}"
                                        Title="Loading..."
                                        VerticalOptions="Center"
