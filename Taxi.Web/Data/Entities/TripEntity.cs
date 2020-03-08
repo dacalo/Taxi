@@ -29,10 +29,11 @@ namespace Taxi.Web.Data.Entities
         public DateTime? EndaDateLocal => EndDate?.ToLocalTime();
 
         [Display(Name = "Origen")]
-        [MaxLength(100, ErrorMessage = "El campo {0} no debe ser mayor a {1} caracteres.")]
+        [MaxLength(500, ErrorMessage = "El campo {0} no debe ser mayor a {1} caracteres.")]
         public string Source { get; set; }
 
-        [MaxLength(100, ErrorMessage = "El campo {0} no debe ser mayor a {1} caracteres.")]
+        [Display(Name = "Destino")]
+        [MaxLength(500, ErrorMessage = "El campo {0} no debe ser mayor a {1} caracteres.")]
         public string Target { get; set; }
 
         [Display(Name = "Calificación")]
@@ -45,6 +46,7 @@ namespace Taxi.Web.Data.Entities
 
         [Display(Name = "Comentarios")]
         public string Remarks { get; set; }
+
         public TaxiEntity Taxi { get; set; }
         public ICollection<TripDetailEntity> TripDetails { get; set; }
         public UserEntity User { get; set; }

@@ -41,7 +41,7 @@ namespace Taxi.Web.Data
             string address,
             UserType userType)
         {
-            var user = await _userHelper.GetUserByEmailAsync(email);
+            var user = await _userHelper.GetUserAsync(email);
             if (user == null)
             {
                 user = new UserEntity
@@ -58,6 +58,9 @@ namespace Taxi.Web.Data
 
                 await _userHelper.AddUserAsync(user, "123456");
                 await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+
+                var token = await _userHelper.GenerateEmailConfirmationTokenAsync(user);
+                await _userHelper.ConfirmEmailAsync(user, token);
             }
 
             return user;
@@ -90,7 +93,7 @@ namespace Taxi.Web.Data
                             Qualification = 4.5f,
                             Source = "ITM Fraternidad",
                             Target = "ITM Robledo",
-                            Remarks = "Muy buen servicio",
+                            Remarks = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae nisl vel neque euismod gravida. Morbi mattis, dui ut aliquet lacinia, eros massa laoreet risus, quis iaculis mi justo vel ex. Suspendisse in sagittis est. Nunc pretium elementum libero, hendrerit mollis ipsum faucibus non. Suspendisse pretium diam ut libero facilisis, non interdum diam sagittis. In id congue metus. Etiam commodo tellus quis elit tincidunt, ut posuere diam tempor. Etiam aliquet dolor quis velit dapibus finibus. Vivamus consectetur neque dolor, ut laoreet nibh condimentum sed. Pellentesque commodo, tellus at volutpat suscipit, magna dolor ullamcorper turpis, sit amet tincidunt purus erat nec lorem. Suspendisse accumsan eros vitae tellus pharetra, eu egestas augue egestas. Integer finibus tortor arcu, eu molestie est lobortis viverra. Duis pretium orci ante, nec porta urna lacinia sed. ",
                             User = user1
                         },
                         new TripEntity
@@ -100,7 +103,7 @@ namespace Taxi.Web.Data
                             Qualification = 4.8f,
                             Source = "ITM Robledo",
                             Target = "ITM Fraternidad",
-                            Remarks = "Conductor muy amable",
+                            Remarks = "In hac habitasse platea dictumst. Pellentesque accumsan libero non vehicula convallis. Pellentesque sed laoreet risus. Sed ornare mauris in dictum rhoncus. Proin porta vitae ligula a tempor. Aenean pretium pulvinar lacinia. Nunc placerat feugiat felis, sodales fermentum turpis convallis eget. Sed quis nunc ut turpis faucibus maximus ornare et orci. Integer nec dignissim turpis. Nunc sed fringilla quam.",
                             User = user1
                         }
                     }
