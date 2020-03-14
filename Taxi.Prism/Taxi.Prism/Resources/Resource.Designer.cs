@@ -124,7 +124,7 @@ namespace Taxi.Prism.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Login.
+        ///   Busca una cadena traducida similar a Log in.
         /// </summary>
         public static string Login {
             get {

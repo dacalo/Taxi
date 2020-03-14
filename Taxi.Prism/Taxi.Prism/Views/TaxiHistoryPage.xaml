@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:i18n="clr-namespace:Taxi.Prism.Helpers"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
@@ -17,15 +18,15 @@
             AbsoluteLayout.LayoutFlags="All" 
             Padding="5">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Plaque"
+                <Label Text="{i18n:Translate Plaque}"
                        VerticalOptions="Center"/>
                 <Entry HorizontalOptions="FillAndExpand" 
-                       Placeholder="Enter plaque..." 
+                       Placeholder="{i18n:Translate PlaquePlaceHolder}" 
                        Text="{Binding Plaque}"
                        VerticalOptions="Center"/>
                 <Button Command="{Binding CheckPlaqueCommand}"
                         Margin="10,0"
-                        Text="Check Plaque"/>
+                        Text="{i18n:Translate CheckPlaque}"/>
             </StackLayout>
             <rating:SfRating HorizontalOptions="Center" 
                              IsEnabled="False"
@@ -36,17 +37,22 @@
                     <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
                 </rating:SfRating.RatingSettings>
             </rating:SfRating>
-            <Label FontAttributes="Bold" 
-                   FontSize="Large"
-                   HorizontalOptions="Center"
-                   Text="{Binding Taxi.Qualification, StringFormat='Qualification: {0:N2}'}"/>
-
+            <StackLayout 
+                HorizontalOptions="Center" 
+                Orientation="Horizontal">
+                <Label FontAttributes="Bold" 
+                       FontSize="Large"
+                       Text="{i18n:Translate Qualification}"/>
+                <Label FontAttributes="Bold" 
+                       FontSize="Large"
+                       Text="{Binding Taxi.Qualification, StringFormat='{0:N2}'}"/>
+            </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Number of trips:"/>
+                <Label Text="{i18n:Translate NumberOfTrips}"/>
                 <Label Text="{Binding Taxi.NumberOfTrips, StringFormat='{0:N0}'}"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Driver:"/>
+                <Label Text="{i18n:Translate Driver}"/>
                 <Label Text="{Binding Taxi.User.FullName, StringFormat='{0:N0}'}"/>
             </StackLayout>
             <Grid>
@@ -61,13 +67,13 @@
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0"
                        FontAttributes="Bold"
-                       Text="Start Date"/>
+                       Text="{i18n:Translate StartDate}"/>
                 <Label Grid.Column="1"
                        FontAttributes="Bold"
-                       Text="Score"/>
+                       Text="{i18n:Translate Score}"/>
                 <Label Grid.Column="2"
                        FontAttributes="Bold"
-                       Text="Remarks"/>
+                       Text="{i18n:Translate Remarks}"/>
             </Grid>
 
             <CollectionView ItemsSource="{Binding Trips}">
@@ -111,7 +117,7 @@
                                        HorizontalOptions="Center"
                                        TextColor="{StaticResource ColorFontInverse}"
                                        IsVisible="{Binding IsRunning}"
-                                       Title="Loading..."
+                                       Title="{i18n:Translate Loading}"
                                        VerticalOptions="Center"
                                        ViewBoxWidth="80"
                                        ViewBoxHeight="80" />
