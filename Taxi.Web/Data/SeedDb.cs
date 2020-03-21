@@ -29,7 +29,10 @@ namespace Taxi.Web.Data
             var driver = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "divadchl@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.Driver);
             var user1 = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "dacalo.soporte@gmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
             var user2 = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "divadchl666@hotmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            var user3 = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "dacalo@yopmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
+            var user4 = await CheckUserAsync("CALD7808244AA", "David", "Chávez", "divadchl@yopmail.com", "350 634 2747", "Calle Luna Calle Sol", UserType.User);
             await CheckTaxisAsync(driver, user1, user2);
+            await CheckUserGroups(user1, user2, user3, user4);
         }
 
         private async Task<UserEntity> CheckUserAsync(
@@ -141,5 +144,36 @@ namespace Taxi.Web.Data
                 await _dataContext.SaveChangesAsync();
             }
         }
+
+        private async Task CheckUserGroups(UserEntity user1, UserEntity user2, UserEntity user3, UserEntity user4)
+        {
+            if (!_dataContext.UserGroups.Any())
+            {
+                _dataContext.UserGroups.Add(new UserGroupEntity
+                {
+                    User = user1,
+                    Users = new List<UserGroupDetailEntity>
+            {
+                new UserGroupDetailEntity { User = user2 },
+                new UserGroupDetailEntity { User = user3 },
+                new UserGroupDetailEntity { User = user4 }
+            }
+                });
+
+                _dataContext.UserGroups.Add(new UserGroupEntity
+                {
+                    User = user2,
+                    Users = new List<UserGroupDetailEntity>
+            {
+                new UserGroupDetailEntity { User = user1 },
+                new UserGroupDetailEntity { User = user3 },
+                new UserGroupDetailEntity { User = user4 }
+            }
+                });
+
+                await _dataContext.SaveChangesAsync();
+            }
+        }
+
     }
 }

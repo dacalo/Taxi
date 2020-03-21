@@ -20,6 +20,9 @@ namespace Taxi.Web.Data.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd hh:mm}", ApplyFormatInEditMode = false)]
         public DateTime DateLocal => Date.ToLocalTime();
 
+        [Display(Name ="Domicilio")]
+        [MaxLength(500, ErrorMessage ="El campo {0} debe tener hasta {1} caracteres.")]
+        public string Address { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public TripEntity Trip { get; set; }

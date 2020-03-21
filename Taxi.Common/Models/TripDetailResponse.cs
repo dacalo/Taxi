@@ -5,6 +5,8 @@ namespace Taxi.Common.Models
     public class TripDetailResponse
     {
         public int Id { get; set; }
+        
+        public string Address { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -13,5 +15,6 @@ namespace Taxi.Common.Models
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
+
     }
 }

@@ -120,9 +120,6 @@
   <data name="UserNotFoundError" xml:space="preserve">
     <value>El usuario no existe</value>
   </data>
-  <data name="UserNotFoundError" xml:space="preserve">
-    <value>El usuario no existe</value>
-  </data>
   <data name="UserAlreadyExists" xml:space="preserve">
     <value>El usuario ya existe.</value>
   </data>
@@ -177,5 +174,4 @@
   <data name="RequestJoinGroupEmailSent" xml:space="preserve">
     <value>Se ha enviado un correo electrónico al usuario con su solicitud, ¡esperamos a que responda pronto!</value>
   </data>
-
 </root>
