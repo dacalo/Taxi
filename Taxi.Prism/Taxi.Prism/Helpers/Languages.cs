@@ -38,5 +38,20 @@ namespace Taxi.Prism.Helpers
         public static string Remarks => Resource.Remarks;
         public static string Loading => Resource.Loading;
 
+        public static string Email => Resource.Email;
+
+        public static string EmailPlaceHolder => Resource.EmailPlaceHolder;
+
+        public static string EmailError => Resource.EmailError;
+
+        public static string Password => Resource.Password;
+
+        public static string PasswordError => Resource.PasswordError;
+
+        public static string PasswordPlaceHolder => Resource.PasswordPlaceHolder;
+
+        public static string Register => Resource.Register;
+
+
     }
 }
