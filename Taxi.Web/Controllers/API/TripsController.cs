@@ -257,14 +257,12 @@ namespace Taxi.Web.Controllers.API
                 {
                     new TripDetailEntity
                     {
-                        Address = request.Address,
                         Date = DateTime.UtcNow,
                         Latitude = request.Latitude,
                         Longitude = request.Longitude
                     },
                     new TripDetailEntity
                     {
-                        Address = request.Address,
                         Date = DateTime.UtcNow,
                         Latitude = request.Latitude,
                         Longitude = request.Longitude

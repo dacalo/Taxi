@@ -104,7 +104,6 @@ namespace Taxi.Web.Helpers
                 TargetLongitude = t.TargetLongitude,
                 TripDetails = t.TripDetails.Select(td => new TripDetailResponse
                 {
-                    Address = td.Address,
                     Date = td.Date,
                     Id = td.Id,
                     Latitude = td.Latitude,
