@@ -56,5 +56,45 @@ namespace Taxi.Prism.Helpers
 
         public static string LoginError => Resource.LoginError;
         public static string Logout => Resource.Logout;
+
+        public static string Address => Resource.Address;
+
+        public static string AddressError => Resource.AddressError;
+
+        public static string AddressPlaceHolder => Resource.AddressPlaceHolder;
+
+        public static string Phone => Resource.Phone;
+
+        public static string PhoneError => Resource.PhoneError;
+
+        public static string PhonePlaceHolder => Resource.PhonePlaceHolder;
+
+        public static string RegisterAs => Resource.RegisterAs;
+
+        public static string RegisterAsError => Resource.RegisterAsError;
+
+        public static string RegisterAsPlaceHolder => Resource.RegisterAsPlaceHolder;
+
+        public static string PasswordConfirm => Resource.PasswordConfirm;
+
+        public static string PasswordConfirmError1 => Resource.PasswordConfirmError1;
+
+        public static string PasswordConfirmError2 => Resource.PasswordConfirmError2;
+
+        public static string PasswordConfirmPlaceHolder => Resource.PasswordConfirmPlaceHolder;
+
+        public static string User => Resource.User;
+
+        public static string RFCError => Resource.RFCError;
+
+        public static string FirstNameError => Resource.FirstNameError;
+
+        public static string LastNameError => Resource.LastNameError;
+
+        public static string RFC => Resource.RFC;
+
+        public static string RFCPlaceHolder => Resource.RFCPlaceHolder;
+        
+        public static string Ok => Resource.Ok;
     }
 }
