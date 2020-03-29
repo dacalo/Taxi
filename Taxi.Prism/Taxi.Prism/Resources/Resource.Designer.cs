@@ -160,6 +160,24 @@ namespace Taxi.Prism.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Emailor password incorrect..
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Logout..
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Menu.
         /// </summary>
         public static string Menu {

@@ -10,9 +10,11 @@ namespace Taxi.Prism.Helpers
         {
             var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             Resource.Culture = ci;
+            Culture = ci.Name;
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
 
+        public static string Culture {get; set;}
         public static string Accept => Resource.Accept;
         public static string ConnectionError => Resource.ConnectionError;
         public static string Error => Resource.Error;
@@ -52,6 +54,7 @@ namespace Taxi.Prism.Helpers
 
         public static string Register => Resource.Register;
 
-
+        public static string LoginError => Resource.LoginError;
+        public static string Logout => Resource.Logout;
     }
 }

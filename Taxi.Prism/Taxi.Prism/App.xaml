@@ -7,8 +7,8 @@
 
         <ResourceDictionary>
             <!--Parameters-->
-            <!--<x:String x:Key="UrlAPI">http://localhost:83/</x:String>-->
-            <x:String x:Key="UrlAPI">https://taxiweb3.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlAPI">http://10.1.114.74:83/</x:String>
+            <!--<x:String x:Key="UrlAPI">https://taxiweb3.azurewebsites.net/</x:String>-->
 
             <!-- Colors -->
             <Color x:Key="ColorBackgroud">#FFFF05</Color>
