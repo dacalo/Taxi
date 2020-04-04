@@ -291,9 +291,6 @@
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
-  <data name="PictureSource" xml:space="preserve">
-    <value>Ajouter une source d’images</value>
-  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
@@ -302,5 +299,154 @@
   </data>
   <data name="FromGallery" xml:space="preserve">
     <value>À partir de la galerie</value>
+  </data>
+  <data name="PictureSource" xml:space="preserve">
+    <value>Où voulez-vous prendre la photo?!</value>
+  </data>
+  <data name="PasswordRecover" xml:space="preserve">
+    <value>Retrouver son mot de passe</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Mot de passe oublié ?</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Modifier le mot de passe</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>Utilisateur mis à jour avec succès!</value>
+  </data>
+
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmer le nouveau mot de passe</value>
+  </data>
+  <data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>Vous devez saisir une confirmation pour le nouveau mot de passe.!</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Entrez la confirmation du nouveau mot de passe.!</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Mot de passe actuel</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>Veuillez saisir votre mot de passe actuel.</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Saisissez votre mot de passe actuel.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>&amp;Nouveau mot de passe :</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>Vous devez entrer un nouveau mot de passe d&amp;#39;au moins six caractères .h!</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Entrez votre nouveau mot de passe.</value>
+  </data>
+
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="ConfirmAddress" xml:space="preserve">
+    <value>Confirmer votre/vos adresse(s)</value>
+  </data>
+  <data name="EndTrip" xml:space="preserve">
+    <value>Voyage</value>
+  </data>
+  <data name="GeolocationError" xml:space="preserve">
+    <value>Nous ne pouvons pas obtenir votre position actuelle, veuillez réessayer.!</value>
+  </data>
+  <data name="GenericComment" xml:space="preserve">
+    <value>Commentaire générique</value>
+  </data>
+  <data name="CommnetPlaceHolder" xml:space="preserve">
+    <value>Sélectionnez un type de commentaire...</value>
+  </data>
+  <data name="Comment1" xml:space="preserve">
+    <value>Service très bon</value>
+  </data>
+  <data name="Comment2" xml:space="preserve">
+    <value>Chauffeur très sympathique!</value>
+  </data>
+  <data name="Comment3" xml:space="preserve">
+    <value>Taxi propre!</value>
+  </data>
+  <data name="Comment5" xml:space="preserve">
+    <value>Mauvais conducteur!</value>
+  </data>
+  <data name="Comment6" xml:space="preserve">
+    <value>Charge plus élevée que prévu!</value>
+  </data>
+  <data name="Comment4" xml:space="preserve">
+    <value>Taxi sale ou gâté</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="DistanceTraveled" xml:space="preserve">
+    <value>Distance parcourue!</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Heure</value>
+  </data>
+  <data name="ApproximateValue" xml:space="preserve">
+    <value>Valeur Approximative</value>
+  </data>
+  <data name="QualificationError" xml:space="preserve">
+    <value>Vous devez saisir une qualification.!</value>
+  </data>
+  <data name="CancelTripConfirm" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir annuler?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="MyTrips" xml:space="preserve">
+    <value>Mes courses</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Date de fin</value>
+  </data>
+  <data name="Target" xml:space="preserve">
+    <value>Cible:</value>
+  </data>
+  <data name="MyTrip" xml:space="preserve">
+    <value>Mon voyage</value>
+  </data>
+  <data name="AddUserToMyGroup" xml:space="preserve">
+    <value>Ajouter un utilisateur au groupe</value>
+  </data>
+  <data name="EmailSendInvitationPlaceHolder" xml:space="preserve">
+    <value>Entrez l&amp;#39;e-mail pour envoyer l&amp;#39;invitation ...</value>
+  </data>
+  <data name="SendInvitation" xml:space="preserve">
+    <value>Envoyer une invitation</value>
+  </data>
+  <data name="TripsOf" xml:space="preserve">
+    <value>Voyages de</value>
+  </data>
+  <data name="IncidentDescription" xml:space="preserve">
+    <value>Un incident est une expérience négative que vous avez eue avec un taxi et qui affecte la cote du taxi.</value>
+  </data>
+  <data name="RemarksError" xml:space="preserve">
+    <value>Vous devez saisir vos commentaires.</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>Incident</value>
+  </data>
+  <data name="LoginFacebook" xml:space="preserve">
+    <value>Se connecter avec Facebook</value>
+  </data>
+  <data name="ChangePhotoNoTaxiUser" xml:space="preserve">
+    <value>Les utilisateurs créés par les réseaux sociaux, doivent changer la photo ou mot de passe sur le réseau social.</value>
   </data>
 </root>

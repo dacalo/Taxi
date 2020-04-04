@@ -19,7 +19,7 @@ namespace Taxi.Prism
 
         protected override async void OnInitialized()
         {
-            SyncfusionLicenseProvider.RegisterLicense("MjE2NDYyQDMxMzcyZTM0MmUzMGNFaWZsVHJ1czNkcStXMktpbnBEa1R0OEF2SDRYd2hwQjNPeXVtTjdCSW89");
+            SyncfusionLicenseProvider.RegisterLicense("MjMzMzc1QDMxMzgyZTMxMmUzME15MC9EMDgrd1JNSGpBNHZMcE4xRVdDVnNkaitoeG9SQS92RnB6SldPV0k9");
             InitializeComponent();
 
             await NavigationService.NavigateAsync("/TaxiMasterDetailPage/NavigationPage/HomePage");
@@ -41,6 +41,9 @@ namespace Taxi.Prism
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<TripDetailPage, TripDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
+            containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<StartTripPage, StartTripPageViewModel>();
         }
     }
 }

@@ -15,6 +15,7 @@
                   MapType="Street"/>
         <StackLayout Padding="5">
             <Button
+                Command="{Binding StartTripCommand}"
                 Margin="10,0"
                 Text="{i18n:Translate StartTrip}"/>
         </StackLayout>
