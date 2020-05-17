@@ -16,7 +16,7 @@ namespace Taxi.Prism.ViewModels
         private TaxiResponse _taxi;
         private DelegateCommand _checkPlaqueCommand;
         private bool _isRunning;
-        private List<TripItemViewModel> _details;
+        private List<TripItemViewModel> _trips;
 
         public TaxiHistoryPageViewModel(
             INavigationService navigationService,
@@ -41,10 +41,10 @@ namespace Taxi.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
-        public List<TripItemViewModel> Details
+        public List<TripItemViewModel> Trips
         {
-            get => _details;
-            set => SetProperty(ref _details, value);
+            get => _trips;
+            set => SetProperty(ref _trips, value);
         }
 
         public DelegateCommand CheckPlaqueCommand => _checkPlaqueCommand ?? (_checkPlaqueCommand = new DelegateCommand(CheckPlaqueAsync));
@@ -72,8 +72,7 @@ namespace Taxi.Prism.ViewModels
 
             IsRunning = true;
             var url = App.Current.Resources["UrlAPI"].ToString();
-            var connection = await _apiService.CheckConnectionAsync(url);
-            if (!connection)
+            if (!_apiService.CheckConnection())
             {
                 IsRunning = false;
                 await App.Current.MainPage.DisplayAlert(
@@ -96,7 +95,7 @@ namespace Taxi.Prism.ViewModels
             }
 
             Taxi = (TaxiResponse)response.Result;
-            Details = Taxi.Trips.Select(t => new TripItemViewModel(_navigationService)
+            Trips = Taxi.Trips.Select(t => new TripItemViewModel(_navigationService)
             {
                 EndDate = t.EndDate,
                 Id = t.Id,

@@ -318,7 +318,6 @@
   <data name="UserUpdated" xml:space="preserve">
     <value>Utilisateur mis à jour avec succès!</value>
   </data>
-
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Confirmer le nouveau mot de passe</value>
   </data>
@@ -346,7 +345,6 @@
   <data name="NewPasswordPlaceHolder" xml:space="preserve">
     <value>Entrez votre nouveau mot de passe.</value>
   </data>
-
   <data name="Source" xml:space="preserve">
     <value>Source</value>
   </data>
@@ -394,9 +392,6 @@
   </data>
   <data name="ApproximateValue" xml:space="preserve">
     <value>Valeur Approximative</value>
-  </data>
-  <data name="QualificationError" xml:space="preserve">
-    <value>Vous devez saisir une qualification.!</value>
   </data>
   <data name="CancelTripConfirm" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir annuler?</value>
@@ -448,5 +443,11 @@
   </data>
   <data name="ChangePhotoNoTaxiUser" xml:space="preserve">
     <value>Les utilisateurs créés par les réseaux sociaux, doivent changer la photo ou mot de passe sur le réseau social.</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>Le mot de passe et la confirmation ne correspondent pas.!</value>
+  </data>
+  <data name="QualificationError" xml:space="preserve">
+    <value>Vous devez saisir la qualification de voyage.!</value>
   </data>
 </root>

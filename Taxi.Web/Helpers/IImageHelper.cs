@@ -7,6 +7,6 @@ namespace Taxi.Web.Helpers
     {
         Task<string> UploadImageAsync(IFormFile imageFile, string folder);
         string UploadImage(byte[] pictureArray, string folder);
-
+        Task<string> UploadBlobAsync(string image, string containerName);
     }
 }

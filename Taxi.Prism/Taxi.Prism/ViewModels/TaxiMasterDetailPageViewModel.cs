@@ -48,9 +48,7 @@ namespace Taxi.Prism.ViewModels
         public async void ReloadUser()
         {
             string url = App.Current.Resources["UrlAPI"].ToString();
-            string url2 = "https://www.google.com";
-            bool connection = await _apiService.CheckConnectionAsync(url2);
-            if (!connection)
+            if (!_apiService.CheckConnection())
             {
                 return;
             }
@@ -87,15 +85,24 @@ namespace Taxi.Prism.ViewModels
                 },
                 new Menu
                 {
+                    Icon = "ic_location_on",
+                    PageName = "MyTripsPage",
+                    Title = Languages.MyTrips,
+                    IsLoginRequired = true
+                },
+                new Menu
+                {
                     Icon = "ic_people",
                     PageName = "GroupPage",
-                    Title = Languages.AdminUserGroup
+                    Title = Languages.AdminUserGroup,
+                    IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "ic_account_circle",
                     PageName = "ModifyUserPage",
-                    Title = Languages.ModifyUser
+                    Title = Languages.ModifyUser,
+                    IsLoginRequired = true
                 },
                 new Menu
                 {
@@ -116,7 +123,8 @@ namespace Taxi.Prism.ViewModels
                 {
                     Icon = m.Icon,
                     PageName = m.PageName,
-                    Title = m.Title
+                    Title = m.Title,
+                    IsLoginRequired = m.IsLoginRequired
                 }).ToList());
         }
 

@@ -56,9 +56,7 @@ namespace Taxi.Prism.ViewModels
             IsEnabled = false;
 
             string url = App.Current.Resources["UrlAPI"].ToString();
-            string url2 = "https://www.google.com";
-            bool connection = await _apiService.CheckConnectionAsync(url2);
-            if (!connection)
+            if (!_apiService.CheckConnection())
             {
                 IsRunning = false;
                 IsEnabled = true;

@@ -26,6 +26,7 @@ namespace Taxi.Prism.ViewModels
         {
             Title = Languages.Login;
             IsEnabled = true;
+            IsRunning = false;
             _apiService = apiService;
             _navigationService = navigationService;
             Email = "divadchl@gmail.com";
@@ -82,9 +83,7 @@ namespace Taxi.Prism.ViewModels
             IsEnabled = false;
 
             string url = App.Current.Resources["UrlAPI"].ToString();
-            string url2 = "https://www.google.com.mx/";
-            bool connection = await _apiService.CheckConnectionAsync(url2);
-            if (!connection)
+            if (!_apiService.CheckConnection())
             {
                 IsRunning = false;
                 IsEnabled = true;

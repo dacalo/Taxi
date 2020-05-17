@@ -318,7 +318,6 @@
   <data name="UserUpdated" xml:space="preserve">
     <value>User updated sucessfully</value>
   </data>
-
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Confirm new password</value>
   </data>
@@ -349,7 +348,6 @@
   <data name="ConfirmNewPasswordError2" xml:space="preserve">
     <value>The password and the confirm does not match.</value>
   </data>
-
   <data name="Source" xml:space="preserve">
     <value>Source</value>
   </data>
@@ -397,9 +395,6 @@
   </data>
   <data name="ApproximateValue" xml:space="preserve">
     <value>Approximate value</value>
-  </data>
-  <data name="QualificationError" xml:space="preserve">
-    <value>You must enter a qualification.</value>
   </data>
   <data name="CancelTripConfirm" xml:space="preserve">
     <value>Are you sure to cancel the trip?</value>
@@ -451,5 +446,8 @@
   </data>
   <data name="ChangePhotoNoTaxiUser" xml:space="preserve">
     <value>Users created by social networks, must change the photo or password on the social network.</value>
+  </data>
+  <data name="QualificationError" xml:space="preserve">
+    <value>You must enter trip qualification.</value>
   </data>
 </root>

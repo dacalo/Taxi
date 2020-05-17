@@ -28,9 +28,16 @@ namespace Taxi.Web.Data.Entities
         [Display(Name = "Foto")]
         public string PicturePath { get; set; }
 
+        [Display(Name = "Foto")]
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+        ? "http://10.1.114.74:83/images/noimage.png"
+        : $"http://10.1.114.74:83/{PicturePath.Substring(1)}";
+
+
         [Display(Name = "User Type")]
         public UserType UserType { get; set; }
-
+        [Display(Name = "Login Type")]
+        public LoginType LoginType { get; set; }
         public string FullName => $"{FirstName} {LastName}";
 
         public string FullNameWithRFC => $"{FirstName} {LastName}-{RFC}";

@@ -826,7 +826,7 @@ namespace Taxi.Prism.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a You must enter a qualification..
+        ///   Busca una cadena traducida similar a You must enter trip qualification..
         /// </summary>
         public static string QualificationError {
             get {

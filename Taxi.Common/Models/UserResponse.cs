@@ -32,7 +32,7 @@ namespace Taxi.Common.Models
 
         public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
         ? "http://10.1.114.74:83//images/noimage.png"
-        : $"http://10.1.114.74:83{PicturePath.Substring(1)}";
+        : $"http://10.1.114.74:83/{PicturePath.Substring(1)}";
 
     }
 }

@@ -25,7 +25,6 @@
                        Text="{Binding Plaque}"
                        VerticalOptions="Center"/>
                 <Button Command="{Binding CheckPlaqueCommand}"
-                        Margin="10,0"
                         Text="{i18n:Translate CheckPlaque}"/>
             </StackLayout>
             <rating:SfRating HorizontalOptions="Center" 
@@ -110,7 +109,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="Gear" 
+        <!--<busyindicator:SfBusyIndicator AnimationType="Gear" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                                        AbsoluteLayout.LayoutFlags="All"
                                        BackgroundColor="{StaticResource ColorDanger}"
@@ -120,7 +119,7 @@
                                        Title="{i18n:Translate Loading}"
                                        VerticalOptions="Center"
                                        ViewBoxWidth="80"
-                                       ViewBoxHeight="80" />
+                                       ViewBoxHeight="80" />-->
     </AbsoluteLayout>
 </ContentPage>
 

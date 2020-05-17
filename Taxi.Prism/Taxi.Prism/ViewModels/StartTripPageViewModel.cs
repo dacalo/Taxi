@@ -38,6 +38,7 @@ namespace Taxi.Prism.ViewModels
         private TripDetailsRequest _tripDetailsRequest;
         private DelegateCommand _getAddressCommand;
         private DelegateCommand _startTripCommand;
+        private DelegateCommand _cancelTripCommand;
 
         public StartTripPageViewModel(
             INavigationService navigationService,
@@ -58,6 +59,9 @@ namespace Taxi.Prism.ViewModels
         public DelegateCommand GetAddressCommand => _getAddressCommand ?? (_getAddressCommand = new DelegateCommand(LoadSourceAsync));
 
         public DelegateCommand StartTripCommand => _startTripCommand ?? (_startTripCommand = new DelegateCommand(StartTripAsync));
+
+        public DelegateCommand CancelTripCommand => _cancelTripCommand ?? (_cancelTripCommand = new DelegateCommand(CancelTripAsync));
+
 
         public string Plaque { get; set; }
 
@@ -89,6 +93,15 @@ namespace Taxi.Prism.ViewModels
         {
             get => _buttonLabel;
             set => SetProperty(ref _buttonLabel, value);
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            if (IsSecondButtonVisible && _timer != null)
+            {
+                _timer.Start();
+            }
         }
 
         private async void LoadSourceAsync()
@@ -125,13 +138,23 @@ namespace Taxi.Prism.ViewModels
                 return;
             }
 
+            if (IsSecondButtonVisible)
+            {
+                await EndTripAsync();
+            }
+            else
+            {
+                await BeginTripAsync();
+            }
+        }
+
+        private async Task BeginTripAsync()
+        {
             IsRunning = true;
             IsEnabled = false;
 
-            string url = App.Current.Resources["UrlAPI"].ToString();
-            string url2 = "https://www.google.com";
-            bool connection = await _apiService.CheckConnectionAsync(url2);
-            if (!connection)
+            _url = App.Current.Resources["UrlAPI"].ToString();
+            if (!_apiService.CheckConnection())
             {
                 IsRunning = false;
                 IsEnabled = true;
@@ -142,8 +165,8 @@ namespace Taxi.Prism.ViewModels
                 return;
             }
 
-            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
-            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            _user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            _token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
 
             TripRequest tripRequest = new TripRequest
             {
@@ -151,19 +174,16 @@ namespace Taxi.Prism.ViewModels
                 Latitude = _geolocatorService.Latitude,
                 Longitude = _geolocatorService.Longitude,
                 Plaque = Plaque,
-                UserId = new Guid(user.Id)
+                UserId = new Guid(_user.Id)
             };
 
-            Response response = await _apiService.NewTripAsync(url, "/api", "/Trips", tripRequest, "bearer", token.Token);
+            Response response = await _apiService.NewTripAsync(_url, "/api", "/Trips", tripRequest, "bearer", _token.Token);
 
             if (!response.IsSuccess)
             {
                 IsRunning = false;
                 IsEnabled = true;
-                await App.Current.MainPage.DisplayAlert(
-                    Languages.Error,
-                    response.Message,
-                    Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 
@@ -173,6 +193,7 @@ namespace Taxi.Prism.ViewModels
             StartTripPage.GetInstance().AddPin(_position, Source, Languages.StartTrip, PinType.Place);
             IsRunning = false;
             IsEnabled = true;
+
             _timer = new Timer
             {
                 Interval = 1000
@@ -180,6 +201,23 @@ namespace Taxi.Prism.ViewModels
 
             _timer.Elapsed += Timer_Elapsed;
             _timer.Start();
+        }
+
+        private async Task EndTripAsync()
+        {
+            _timer.Stop();
+
+            if (_tripDetailsRequest.TripDetails.Count > 0)
+            {
+                await SendTripDetailsAsync();
+            }
+
+            NavigationParameters parameters = new NavigationParameters
+            {
+                { "tripId", _tripResponse.Id },
+            };
+
+            await _navigationService.NavigateAsync(nameof(EndTripPage), parameters);
         }
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -263,5 +301,34 @@ namespace Taxi.Prism.ViewModels
 
             return true;
         }
+
+        private async void CancelTripAsync()
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert(Languages.Confirmation, Languages.CancelTripConfirm, Languages.Yes, Languages.No);
+            if (!answer)
+            {
+                return;
+            }
+
+            IsRunning = true;
+            IsEnabled = false;
+
+            if (!_apiService.CheckConnection())
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
+
+            _timer.Stop();
+            await _apiService.DeleteAsync(_url, "/api", "/Trips", _tripResponse.Id, "bearer", _token.Token);
+
+            IsRunning = false;
+            IsEnabled = true;
+
+            await _navigationService.GoBackToRootAsync();
+        }
+
     }
 }

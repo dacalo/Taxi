@@ -36,5 +36,11 @@ namespace Taxi.Web.Models
 
         [Display(Name = "Imagen")]
         public string PicturePath { get; set; }
+
+        [Display(Name = "Picture")]
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+        ? "http://10.1.114.74:83/images/noimage.png"
+        : $"http://10.1.114.74:83/{PicturePath.Substring(1)}";
+
     }
 }
